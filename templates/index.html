@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090f18">
+    <title>CyberGuard | Scam Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="brand">
+            <span class="brand-icon">⬡</span>
+            CYBER<span>GUARD</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#scanner">Scanner</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="/#awareness">Awareness</a>
+        </div>
+
+        <a href="#scanner" class="nav-button">Check a threat ↗</a>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-tag">
+                <span class="pulse"></span>
+                YOUR DIGITAL SAFETY COMPANION
+            </div>
+
+            <h1>Trust less.<br><span>Verify more.</span></h1>
+
+            <p class="hero-description">
+                Suspicious message? Unexpected link? Don't take chances.
+                Analyze potential digital threats before they reach you.
+            </p>
+
+            <a href="#scanner" class="primary-button">
+                Start security scan <span>→</span>
+            </a>
+
+            <div class="hero-note">
+                <span>◈</span> Free to use
+                <span>◈</span> No account required
+                <span>◈</span> Explainable analysis
+            </div>
+        </section>
+
+        <section class="scanner-section" id="scanner">
+            <div class="section-heading">
+                <span class="eyebrow">THREAT DETECTION ENGINE</span>
+                <h2>Inspect before you interact.</h2>
+                <p>Analyze suspicious messages and URLs using our detection engine.</p>
+            </div>
+
+            <div class="scanner-card">
+                <div class="scanner-top">
+                    <div>
+                        <span class="scanner-dot"></span>
+                        <strong>SECURITY SCANNER</strong>
+                    </div>
+                    <span class="engine-label">ENGINE: ACTIVE</span>
+                </div>
+
+                <form id="scanForm">
+                    <label for="message">SUSPICIOUS MESSAGE</label>
+                    <textarea id="message"
+                        placeholder="Paste an SMS, email, WhatsApp message or suspicious text here..."
+                        maxlength="5000"></textarea>
+
+                    <div class="input-meta">
+                        <span>Do not enter actual passwords or OTPs.</span>
+                        <span id="charCount">0 / 5000</span>
+                    </div>
+
+                    <div class="divider"><span>OPTIONAL URL ANALYSIS</span></div>
+
+                    <label for="url">SUSPICIOUS URL</label>
+                    <input type="text" id="url" placeholder="https://example.com" maxlength="2048" autocomplete="off">
+
+                    <button type="submit" class="scan-button" id="scanButton">
+                        <span>⌕</span> Analyze for threats
+                    </button>
+                </form>
+
+                <div class="demo-examples">
+                    <span>TRY AN EXAMPLE:</span>
+                    <button type="button" data-example="phishing">Phishing SMS</button>
+                    <button type="button" data-example="legitimate">Legitimate SMS</button>
+                    <button type="button" data-example="prize">Prize scam</button>
+                </div>
+            </div>
+
+            <section class="results hidden" id="results">
+                <div class="result-header">
+                    <div>
+                        <span class="eyebrow">ANALYSIS REPORT</span>
+                        <h2>Threat assessment</h2>
+                    </div>
+                    <span class="risk-badge" id="riskBadge">LOW RISK</span>
+                </div>
+
+                <div class="result-main">
+                    <div class="score-circle" id="scoreCircle">
+                        <div>
+                            <strong id="scoreValue">0</strong>
+                            <span>/ 100</span>
+                        </div>
+                    </div>
+
+                    <div class="score-description">
+                        <h3 id="riskTitle">Analysis complete</h3>
+                        <p id="riskDescription"></p>
+                    </div>
+                </div>
+                <!-- Combined Intelligence Assessment -->
+                <div class="combined-panel" id="combinedPanel">
+                    <div class="combined-header">
+                        <div>
+                            <span class="eyebrow">HYBRID INTELLIGENCE</span>
+                            <h3>Combined Security Verdict</h3>
+                        </div>
+                        <span id="combinedRiskBadge" class="combined-badge">ANALYZING</span>
+                    </div>
+
+                    <div class="combined-grid">
+                        <div class="combined-metric">
+                            <span>RULE ENGINE</span>
+                            <strong id="ruleRisk">—</strong>
+                        </div>
+
+                        <div class="combined-metric">
+                            <span>ML PREDICTION</span>
+                            <strong id="combinedMLPrediction">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="combined-verdict">
+                        <span>FINAL ASSESSMENT</span>
+                        <h2 id="combinedVerdict">—</h2>
+                        <p id="combinedReason">Waiting for analysis...</p>
+                    </div>
+                </div>
+                <!-- Machine Learning Analysis -->
+                <div class="ml-panel">
+                    <div class="ml-header">
+                        <div>
+                            <span class="eyebrow">MACHINE LEARNING ENGINE</span>
+                            <h3>AI Detection Analysis</h3>
+                        </div>
+                        <span class="ml-status">MODEL ACTIVE</span>
+                    </div>
+
+                    <div class="ml-prediction">
+                        <div>
+                            <span class="ml-label">PREDICTED CATEGORY</span>
+                            <h2 id="mlPrediction">--</h2>
+                        </div>
+
+                        <div class="ml-confidence">
+                            <strong id="mlConfidence">--%</strong>
+                            <span>Model confidence</span>
+                        </div>
+                    </div>
+
+                    <div class="ml-probabilities">
+                        <h4>Class probability distribution</h4>
+
+                        <div class="probability-item">
+                            <div class="probability-info">
+                                <span>Legitimate (Ham)</span>
+                                <span id="hamProbability">0%</span>
+                            </div>
+                            <div class="probability-track">
+                                <div class="probability-fill ham-fill" id="hamBar"></div>
+                            </div>
+                        </div>
+
+                        <div class="probability-item">
+                            <div class="probability-info">
+                                <span>Spam</span>
+                                <span id="spamProbability">0%</span>
+                            </div>
+                            <div class="probability-track">
+                                <div class="probability-fill spam-fill" id="spamBar"></div>
+                            </div>
+                        </div>
+
+                        <div class="probability-item">
+                            <div class="probability-info">
+                                <span>Smishing</span>
+                                <span id="smishingProbability">0%</span>
+                            </div>
+                            <div class="probability-track">
+                                <div class="probability-fill smishing-fill" id="smishingBar"></div>
+                            </div>
+                        </div>
+                        <div class="xai-section">
+                            <div class="xai-heading">
+                                <div>
+                                    <span class="eyebrow">EXPLAINABLE AI</span>
+                                    <h4>Why did the model decide this?</h4>
+                                </div>
+                                <span class="xai-tag">FEATURE ANALYSIS</span>
+                            </div>
+
+                            <div class="xai-columns">
+                                <div class="xai-group">
+                                    <h5>Supporting the prediction</h5>
+                                    <div id="xaiSupporting" class="xai-term-list"></div>
+                                </div>
+
+                                <div class="xai-group">
+                                    <h5>Opposing the prediction</h5>
+                                    <div id="xaiOpposing" class="xai-term-list"></div>
+                                </div>
+                            </div>
+
+                            <p class="xai-disclaimer">
+                                Contributions show how message features influenced the
+                                comparison between the predicted class and its strongest
+                                competitor. They do not establish malicious intent.
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="ml-disclaimer">
+                        Model confidence represents the classifier's predicted
+                        class probability, not a verified probability of fraud.
+                    </p>
+                </div>
+                <!-- End Machine Learning Analysis -->
+                <div class="findings-heading">
+                    <h3>Detection evidence</h3>
+                    <span id="findingCount">0 indicators</span>
+                </div>
+
+                <div id="findingsList" class="findings-list"></div>
+
+                <div class="recommendation">
+                    <strong>RECOMMENDED ACTION</strong>
+                    <p id="recommendationText"></p>
+                </div>
+
+                <p class="disclaimer">
+                    This is an awareness tool, not a guarantee of safety.
+                    No major indicators does not mean content is legitimate.
+                </p>
+            </section>
+        </section>
+
+        <section class="features-section" id="how-it-works">
+            <div class="section-heading">
+                <span class="eyebrow">BUILT FOR DIGITAL SAFETY</span>
+                <h2>More than a warning sign.</h2>
+                <p>Understand the threats, not just the risk score.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⌕</div>
+                    <h3>Message intelligence</h3>
+                    <p>Identify urgency tactics, OTP requests, threats and suspicious language patterns.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>URL inspection</h3>
+                    <p>Inspect suspicious domain structures, IP-based URLs and shortened links.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">◈</div>
+                    <h3>Explainable detection</h3>
+                    <p>See which indicators were triggered and why the system flagged them.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="awareness-section" id="awareness">
+            <span class="eyebrow">STAY INFORMED</span>
+            <h2>Think like a defender.</h2>
+            <p>Never share OTPs. Verify requests through official channels.
+                Don't trust urgency. Inspect links before interacting.</p>
+        </section>
+    </main>
+
+    <footer>
+        <a href="/" class="brand">⬡ CYBER<span>GUARD</span></a>
+        <p>Built for safer digital communities · SDG 16</p>
+        <p class="footer-small">An educational cybersecurity awareness project.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
